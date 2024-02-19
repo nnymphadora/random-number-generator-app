@@ -7,7 +7,7 @@ import { RandomOrgApiService } from '../../services/random-org-api.service';
   styleUrl: './main.component.scss',
 })
 export class MainComponent {
-  randomNumberData: any;
+  randomNumberData: object;
 
   onFormSubmitted(formData: any) {
     this.randomOrgApiService
