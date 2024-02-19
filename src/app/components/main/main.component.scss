@@ -1,0 +1,17 @@
+@import "../../../assets/variables.scss";
+
+.main {
+  height: 100dvh;
+  display: flex;
+  flex: row;
+  justify-content: center;
+  align-items: center;
+  background-color: $main-body-color;
+}
+
+.right {
+  width: 50%;
+}
+.left {
+  width: 50%;
+}

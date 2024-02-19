@@ -1,0 +1,16 @@
+@import "../src/assets/variables.scss";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: $main-font;
+  p {
+    font-size: 16;
+    font-weight: 300;
+  }
+  h1 {
+    font-size: 20;
+    font-family: 500;
+  }
+}

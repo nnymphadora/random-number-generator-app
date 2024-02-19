@@ -1,0 +1,86 @@
+<form class="form" [formGroup]="generatorForm" (ngSubmit)="onSubmit()">
+  <mat-form-field>
+    <input
+      type="number"
+      matInput
+      formControlName="n"
+      placeholder="Enter a number between 1 and 10000"
+    />
+    <mat-error
+      *ngIf="generatorForm.get('n').invalid && generatorForm.get('n').touched"
+    >
+      <span *ngIf="generatorForm.get('n').hasError('required')"
+        >This field is required.</span
+      >
+      <span
+        *ngIf="
+          generatorForm.get('n').hasError('min') ||
+          generatorForm.get('n').hasError('max')
+        "
+        >Number must be between 1 and 10000.</span
+      >
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input
+      type="number"
+      matInput
+      formControlName="minNum"
+      placeholder="Enter a number between -1000000 and 1000000"
+    />
+    <mat-error
+      *ngIf="
+        generatorForm.get('minNum').invalid &&
+        generatorForm.get('minNum').touched
+      "
+    >
+      <span *ngIf="generatorForm.get('minNum').hasError('required')"
+        >This field is required.</span
+      >
+      <span
+        *ngIf="
+          generatorForm.get('minNum').hasError('min') ||
+          generatorForm.get('minNum').hasError('min')
+        "
+        >Number must be between -1000000 and 1000000.</span
+      >
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input
+      type="number"
+      matInput
+      formControlName="maxNum"
+      placeholder="Enter a number between -1000000 and 1000000"
+    />
+    <mat-error
+      *ngIf="
+        generatorForm.get('maxNum').invalid &&
+        generatorForm.get('maxNum').touched
+      "
+    >
+      <span *ngIf="generatorForm.get('maxNum').hasError('required')"
+        >This field is required.</span
+      >
+      <span
+        *ngIf="
+          generatorForm.get('maxNum').hasError('min') ||
+          generatorForm.get('maxNum').hasError('max')
+        "
+        >Number must be between -1000000 and 1000000.</span
+      >
+      <span *ngIf="generatorForm.get('maxNum').hasError('maxNumLessThanMin')">
+        Maximum number must be higher than the minimum number.
+      </span>
+    </mat-error>
+  </mat-form-field>
+
+  <button
+    mat-raised-button
+    color="primary"
+    type="submit"
+    [disabled]="generatorForm.invalid"
+  >
+    Submit
+  </button>
+</form>
