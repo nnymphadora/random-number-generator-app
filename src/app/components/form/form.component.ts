@@ -35,6 +35,7 @@ export class FormComponent implements OnInit {
           Validators.pattern(/^-?\d+$/),
           Validators.min(-1000000000),
           Validators.max(1000000000),
+          this.maxNumLessThanMinValidator,
         ],
       ],
       maxNum: [
@@ -44,18 +45,29 @@ export class FormComponent implements OnInit {
           Validators.pattern(/^-?\d+$/),
           Validators.min(-1000000000),
           Validators.max(1000000000),
-          this.maxNumLessThanMinValidator.bind(this),
+          this.maxNumLessThanMinValidator,
         ],
       ],
+    });
+
+    this.generatorForm.get('minNum').valueChanges.subscribe(() => {
+      this.generatorForm
+        .get('maxNum')
+        .updateValueAndValidity({ emitEvent: false });
+    });
+
+    this.generatorForm.get('maxNum').valueChanges.subscribe(() => {
+      this.generatorForm
+        .get('minNum')
+        .updateValueAndValidity({ emitEvent: false });
     });
   }
 
   maxNumLessThanMinValidator: ValidatorFn = (control: AbstractControl) => {
-    const maxNumValue = control.value;
-
+    const maxNumValue = control.parent?.get('maxNum').value;
     const minNumValue = control.parent?.get('minNum').value;
 
-    if (maxNumValue < minNumValue) {
+    if (maxNumValue <= minNumValue) {
       return { maxNumLessThanMin: true };
     } else {
       return null;
@@ -64,6 +76,7 @@ export class FormComponent implements OnInit {
 
   onSubmit() {
     if (this.generatorForm.valid) {
+      console.log('valid');
       this.formSubmitted.emit(this.generatorForm.value);
     }
   }

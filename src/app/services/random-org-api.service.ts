@@ -12,7 +12,7 @@ export class RandomOrgApiService {
     n: number,
     min: number,
     max: number
-  ): Observable<{ [key: number]: number }> {
+  ): Observable<{ number: number; occurencies: number }[]> {
     let params = new HttpParams();
     params = params.set('num', n);
     params = params.set('min', min);
@@ -26,15 +26,23 @@ export class RandomOrgApiService {
       .pipe(map((response) => this.processResponse(response)));
   }
 
-  private processResponse(response: string): { [key: number]: number } {
-    const integersArray = response.trim().split('\n').map(Number); // Split text into array of integers
-    const countObject: { [key: number]: number } = {};
+  private processResponse(
+    response: string
+  ): { number: number; occurencies: number }[] {
+    const integersArray = response.trim().split('\n').map(Number);
+
+    const result: { number: number; occurencies: number }[] = [];
 
     integersArray.forEach((num) => {
-      countObject[num] = (countObject[num] || 0) + 1;
+      const existingIndex = result.findIndex((item) => item.number === num);
+      if (existingIndex !== -1) {
+        result[existingIndex].occurencies++;
+      } else {
+        result.push({ number: num, occurencies: 1 });
+      }
     });
 
-    return countObject;
+    return result;
   }
 
   constructor(private http: HttpClient) {}

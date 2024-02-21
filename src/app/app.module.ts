@@ -8,11 +8,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './components/app/app.component';
 import { MainComponent } from './components/main/main.component';
 import { NgChartsModule } from 'ng2-charts';
+
 import { FormComponent } from './components/form/form.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ChartComponent } from './components/chart/chart.component';
 
 @NgModule({
-  declarations: [AppComponent, MainComponent, FormComponent],
+  declarations: [AppComponent, MainComponent, FormComponent, ChartComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

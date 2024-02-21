@@ -3,5 +3,7 @@
     <app-form (formSubmitted)="onFormSubmitted($event)"></app-form>
   </div>
 
-  <div class="right"></div>
+  <div class="right" *ngIf="dataRecieved">
+    <app-chart [randomNumbersData]="randomNumbersData"></app-chart>
+  </div>
 </div>

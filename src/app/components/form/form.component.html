@@ -6,9 +6,7 @@
       formControlName="n"
       placeholder="Enter a number between 1 and 10000"
     />
-    <mat-error
-      *ngIf="generatorForm.get('n').invalid && generatorForm.get('n').touched"
-    >
+    <mat-error *ngIf="generatorForm.get('n').dirty">
       <span *ngIf="generatorForm.get('n').hasError('required')"
         >This field is required.</span
       >
@@ -28,19 +26,14 @@
       formControlName="minNum"
       placeholder="Enter a number between -1000000 and 1000000"
     />
-    <mat-error
-      *ngIf="
-        generatorForm.get('minNum').invalid &&
-        generatorForm.get('minNum').touched
-      "
-    >
+    <mat-error *ngIf="generatorForm.get('minNum').dirty">
       <span *ngIf="generatorForm.get('minNum').hasError('required')"
         >This field is required.</span
       >
       <span
         *ngIf="
           generatorForm.get('minNum').hasError('min') ||
-          generatorForm.get('minNum').hasError('min')
+          generatorForm.get('minNum').hasError('max')
         "
         >Number must be between -1000000 and 1000000.</span
       >
@@ -55,8 +48,7 @@
     />
     <mat-error
       *ngIf="
-        generatorForm.get('maxNum').invalid &&
-        generatorForm.get('maxNum').touched
+        generatorForm.get('maxNum').dirty || generatorForm.get('minNum').dirty
       "
     >
       <span *ngIf="generatorForm.get('maxNum').hasError('required')"

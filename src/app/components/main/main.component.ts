@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RandomOrgApiService } from '../../services/random-org-api.service';
+import { Point } from 'chart.js';
 
 @Component({
   selector: 'app-main',
@@ -7,15 +8,23 @@ import { RandomOrgApiService } from '../../services/random-org-api.service';
   styleUrl: './main.component.scss',
 })
 export class MainComponent {
-  randomNumberData: object;
+  randomNumbersData: Point[];
+  dataRecieved: boolean = false;
 
   onFormSubmitted(formData: any) {
     this.randomOrgApiService
       .getRandomOrgNumbersData(formData.n, formData.minNum, formData.maxNum)
-      .subscribe((data) => {
-        this.randomNumberData = data;
-        console.log(this.randomNumberData);
+      .subscribe((data: any) => {
+        this.onDataRecieved(data);
       });
+  }
+
+  onDataRecieved(data: { number: number; occurencies: number }[]) {
+    this.randomNumbersData = data.map((item) => ({
+      x: item.number,
+      y: item.occurencies,
+    }));
+    this.dataRecieved = true;
   }
 
   constructor(private randomOrgApiService: RandomOrgApiService) {}
