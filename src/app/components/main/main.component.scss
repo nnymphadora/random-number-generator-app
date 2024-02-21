@@ -3,15 +3,36 @@
 .main {
   height: 100dvh;
   display: flex;
-  flex: row;
+  padding: 4rem;
+
+  width: 100vw;
   justify-content: center;
   align-items: center;
   background-color: $main-body-color;
+  .right {
+    margin: 0 auto;
+    width: 50%;
+  }
+  .left {
+    margin: 0 auto;
+  }
 }
 
-.right {
-  width: 50%;
+.hidden {
+  display: hidden;
+
+  right: -5rem;
 }
-.left {
-  width: 50%;
+
+@media (max-width: 767px) {
+  .main {
+    flex-direction: column;
+    padding: 2rem;
+    .right {
+      width: 100%;
+    }
+    .left {
+      width: 100%;
+    }
+  }
 }

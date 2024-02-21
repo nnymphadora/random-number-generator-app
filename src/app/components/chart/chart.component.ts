@@ -19,13 +19,31 @@ export class ChartComponent implements OnChanges {
   public chartData: ChartConfiguration<'scatter'>['data']['datasets'] = [
     {
       data: [],
-      label: 'Result',
+      label: 'Generated numbers distribution',
       pointRadius: 6,
     },
   ];
 
   public chartOptions: ChartConfiguration<'scatter'>['options'] = {
     responsive: true,
+    plugins: {
+      legend: { onClick: null },
+    },
+    scales: {
+      y: {
+        ticks: { precision: 0 },
+        title: {
+          display: true,
+          text: 'Occurencies',
+        },
+      },
+      x: {
+        title: {
+          display: true,
+          text: 'Number',
+        },
+      },
+    },
   };
 
   constructor() {}
