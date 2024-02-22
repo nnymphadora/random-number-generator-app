@@ -8,6 +8,7 @@ import {
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { MatSnackbarService } from '../services/mat-snackbar.service';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
@@ -18,12 +19,16 @@ export class ErrorInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(
       catchError((err: HttpErrorResponse) => {
         if (err) {
-          console.log(err.message);
+          this.snackBarService.openSnackBar(
+            'Service unavailable! Please try again.',
+            'OK',
+            'center'
+          );
         }
         return throwError(err);
       })
     );
   }
 
-  constructor() {}
+  constructor(private snackBarService: MatSnackbarService) {}
 }

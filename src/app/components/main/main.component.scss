@@ -4,10 +4,9 @@
   height: 100dvh;
   display: flex;
   padding: 4rem;
-
   width: 100vw;
-  justify-content: center;
   align-items: center;
+
   background-color: $main-body-color;
   .right {
     margin: 0 auto;
@@ -20,8 +19,6 @@
 
 .hidden {
   display: hidden;
-
-  right: -5rem;
 }
 
 @media (max-width: 767px) {

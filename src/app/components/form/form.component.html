@@ -1,67 +1,71 @@
 <form class="numbers-form" [formGroup]="generatorForm" (ngSubmit)="onSubmit()">
   <mat-form-field>
-    <mat-label>Num</mat-label>
+    <mat-label>Number of integers to generate</mat-label>
     <input
       type="number"
       matInput
-      formControlName="n"
+      formControlName="num"
       placeholder="Enter a number between 1 and 10000"
     />
-    <mat-error *ngIf="generatorForm.get('n').dirty">
-      <span *ngIf="generatorForm.get('n').hasError('required')"
-        >This field is required.</span
-      >
+    <mat-error *ngIf="generatorForm.get('num').dirty">
+      <span *ngIf="generatorForm.get('num').hasError('required')">{{
+        FormErrorMessage.Required
+      }}</span>
       <span
         *ngIf="
-          generatorForm.get('n').hasError('min') ||
-          generatorForm.get('n').hasError('max')
+          generatorForm.get('num').hasError('min') ||
+          generatorForm.get('num').hasError('max')
         "
-        >Number must be between 1 and 10000.</span
+        >{{ FormErrorMessage.NumOfIntegers }}</span
       >
     </mat-error>
   </mat-form-field>
   <mat-form-field>
-    <mat-label>Min number</mat-label>
+    <mat-label>Minimum value</mat-label>
     <input
       type="number"
       matInput
-      formControlName="minNum"
+      formControlName="minValue"
       placeholder="Enter a number between -1000000 and 1000000"
     />
-    <mat-error *ngIf="generatorForm.get('minNum').dirty">
-      <span *ngIf="generatorForm.get('minNum').hasError('required')"
-        >This field is required.</span
+    <mat-error *ngIf="generatorForm.get('minValue').dirty">
+      <span *ngIf="generatorForm.get('minValue').hasError('required')">{{
+        FormErrorMessage.Required
+      }}</span>
+      <span *ngIf="generatorForm.get('minValue').hasError('min')"
+        >{{ FormErrorMessage.minValue }}.</span
       >
-      <span
-        *ngIf="
-          generatorForm.get('minNum').hasError('min') ||
-          generatorForm.get('minNum').hasError('max')
-        "
-        >Number must be between -1000000 and 1000000.</span
+      <span *ngIf="generatorForm.get('minValue').hasError('max')">
+        {{ FormErrorMessage.maxValue }}</span
       >
     </mat-error>
   </mat-form-field>
   <mat-form-field>
-    <mat-label>Max number</mat-label>
+    <mat-label>Maximum value</mat-label>
     <input
       type="number"
       matInput
-      formControlName="maxNum"
-      placeholder="Enter a number between -1000000 and 1000000"
+      formControlName="maxValue"
+      placeholder="Enter the maximum value"
     />
-    <mat-error *ngIf="generatorForm.get('maxNum').dirty">
-      <span *ngIf="generatorForm.get('maxNum').hasError('required')"
-        >This field is required.</span
+    <mat-error *ngIf="generatorForm.get('maxValue').dirty">
+      <span *ngIf="generatorForm.get('maxValue').hasError('required')">{{
+        FormErrorMessage.Required
+      }}</span>
+      <span *ngIf="generatorForm.get('maxValue').hasError('min')"
+        >{{ FormErrorMessage.minValue }}.</span
+      >
+      <span *ngIf="generatorForm.get('maxValue').hasError('max')">
+        {{ FormErrorMessage.maxValue }}</span
       >
       <span
         *ngIf="
-          generatorForm.get('maxNum').hasError('min') ||
-          generatorForm.get('maxNum').hasError('max')
+          generatorForm.get('maxValue').value &&
+          generatorForm.get('maxValue').hasError('maxNumLessThanMin') &&
+          generatorForm.get('minValue').dirty
         "
-        >Number must be between -1000000 and 1000000.</span
       >
-      <span *ngIf="generatorForm.get('maxNum').hasError('maxNumLessThanMin')">
-        Maximum number must be higher than the minimum number.
+        {{ FormErrorMessage.minMaxValue }}
       </span>
     </mat-error>
   </mat-form-field>

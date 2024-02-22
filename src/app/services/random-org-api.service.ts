@@ -14,7 +14,7 @@ export class RandomOrgApiService {
     max: number
   ): Observable<{ number: number; occurencies: number }[]> {
     let params = new HttpParams();
-    params = params.set('num', -3);
+    params = params.set('num', n);
     params = params.set('min', min);
     params = params.set('max', max);
     params = params.set('col', 1);

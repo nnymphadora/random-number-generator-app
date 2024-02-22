@@ -40,7 +40,7 @@ export class ChartComponent implements OnChanges {
       x: {
         title: {
           display: true,
-          text: 'Number',
+          text: 'Integer',
         },
       },
     },

@@ -14,6 +14,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ChartComponent } from './components/chart/chart.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [AppComponent, MainComponent, FormComponent, ChartComponent],
@@ -27,6 +28,7 @@ import { ErrorInterceptor } from './interceptors/error.interceptor';
     MatInputModule,
     HttpClientModule,
     MatButtonModule,
+    MatSnackBarModule,
   ],
   providers: [
     provideAnimationsAsync(),

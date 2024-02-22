@@ -6,6 +6,7 @@ import {
   ValidatorFn,
   Validators,
 } from '@angular/forms';
+import { FormErrorMessage } from '../../enums/form-error-message';
 
 @Component({
   selector: 'app-form',
@@ -16,9 +17,11 @@ export class FormComponent implements OnInit {
   generatorForm: FormGroup;
   @Output() formSubmitted = new EventEmitter<any>();
 
+  FormErrorMessage = FormErrorMessage;
+
   ngOnInit(): void {
     this.generatorForm = this.formBuilder.group({
-      n: [
+      num: [
         '',
         [
           Validators.required,
@@ -28,7 +31,7 @@ export class FormComponent implements OnInit {
         ],
       ],
 
-      minNum: [
+      minValue: [
         '',
         [
           Validators.required,
@@ -38,7 +41,7 @@ export class FormComponent implements OnInit {
           this.maxNumLessThanMinValidator,
         ],
       ],
-      maxNum: [
+      maxValue: [
         '',
         [
           Validators.required,
@@ -50,22 +53,22 @@ export class FormComponent implements OnInit {
       ],
     });
 
-    this.generatorForm.get('minNum').valueChanges.subscribe(() => {
+    this.generatorForm.get('minValue').valueChanges.subscribe(() => {
       this.generatorForm
-        .get('maxNum')
+        .get('maxValue')
         .updateValueAndValidity({ emitEvent: false });
     });
 
-    this.generatorForm.get('maxNum').valueChanges.subscribe(() => {
+    this.generatorForm.get('maxValue').valueChanges.subscribe(() => {
       this.generatorForm
-        .get('minNum')
+        .get('minValue')
         .updateValueAndValidity({ emitEvent: false });
     });
   }
 
   maxNumLessThanMinValidator: ValidatorFn = (control: AbstractControl) => {
-    const maxNumValue = control.parent?.get('maxNum').value;
-    const minNumValue = control.parent?.get('minNum').value;
+    const maxNumValue = control.parent?.get('maxValue').value;
+    const minNumValue = control.parent?.get('minValue').value;
 
     if (maxNumValue <= minNumValue) {
       return { maxNumLessThanMin: true };
