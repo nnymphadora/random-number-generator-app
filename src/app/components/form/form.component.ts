@@ -3,7 +3,6 @@ import {
   AbstractControl,
   FormBuilder,
   FormGroup,
-  ValidatorFn,
   Validators,
 } from '@angular/forms';
 import { FormErrorMessage } from '../../enums/form-error-message';
@@ -66,7 +65,7 @@ export class FormComponent implements OnInit {
     });
   }
 
-  maxNumLessThanMinValidator: ValidatorFn = (control: AbstractControl) => {
+  maxNumLessThanMinValidator(control: AbstractControl) {
     const maxNumValue = control.parent?.get('maxValue').value;
     const minNumValue = control.parent?.get('minValue').value;
 
@@ -75,11 +74,12 @@ export class FormComponent implements OnInit {
     } else {
       return null;
     }
-  };
+  }
 
   onSubmit() {
     if (this.generatorForm.valid) {
-      console.log('valid');
+      console.log('TIP', this.generatorForm);
+
       this.formSubmitted.emit(this.generatorForm.value);
     }
   }

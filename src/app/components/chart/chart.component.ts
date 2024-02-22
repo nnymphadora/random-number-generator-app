@@ -10,16 +10,10 @@ import { ChartConfiguration, Point } from 'chart.js';
 export class ChartComponent implements OnChanges {
   @Input() randomNumbersData: Point[];
 
-  ngOnChanges(): void {
-    this.chartData[0].data = this.randomNumbersData;
-
-    this.chartData = [...this.chartData];
-  }
-
   public chartData: ChartConfiguration<'scatter'>['data']['datasets'] = [
     {
       data: [],
-      label: 'Generated numbers distribution',
+      label: 'Generated integers distribution',
       pointRadius: 6,
     },
   ];
@@ -45,6 +39,12 @@ export class ChartComponent implements OnChanges {
       },
     },
   };
+
+  ngOnChanges(): void {
+    this.chartData[0].data = this.randomNumbersData;
+
+    this.chartData = [...this.chartData];
+  }
 
   constructor() {}
 }

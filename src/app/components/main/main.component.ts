@@ -38,7 +38,11 @@ export class MainComponent {
 
   onFormSubmitted(formData: any) {
     this.randomOrgApiService
-      .getRandomOrgNumbersData(formData.n, formData.minNum, formData.maxNum)
+      .getRandomOrgNumbersData(
+        formData.num,
+        formData.minValue,
+        formData.maxValue
+      )
       .subscribe((data: any) => {
         this.onDataRecieved(data);
       });
