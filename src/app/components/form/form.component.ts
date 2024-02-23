@@ -53,17 +53,24 @@ export class FormComponent implements OnInit {
       ],
     });
 
-    this.generatorForm.get('minValue').valueChanges.subscribe(() => {
-      this.generatorForm
-        .get('maxValue')
-        .updateValueAndValidity({ emitEvent: false });
+    this.minValue.valueChanges.subscribe(() => {
+      this.maxValue.updateValueAndValidity({ emitEvent: false });
     });
 
-    this.generatorForm.get('maxValue').valueChanges.subscribe(() => {
-      this.generatorForm
-        .get('minValue')
-        .updateValueAndValidity({ emitEvent: false });
+    this.maxValue.valueChanges.subscribe(() => {
+      this.minValue.updateValueAndValidity({ emitEvent: false });
     });
+  }
+
+  public get minValue(): AbstractControl<any, any> {
+    return this.generatorForm.get('minValue');
+  }
+
+  public get maxValue(): AbstractControl<any, any> {
+    return this.generatorForm.get('maxValue');
+  }
+  public get num(): AbstractControl<any, any> {
+    return this.generatorForm.get('num');
   }
 
   maxNumLessThanMinValidator(control: AbstractControl) {

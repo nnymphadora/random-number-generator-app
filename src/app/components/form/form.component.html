@@ -7,17 +7,13 @@
       formControlName="num"
       placeholder="Enter a number between 1 and 10000"
     />
-    <mat-error *ngIf="generatorForm.get('num').dirty">
-      <span *ngIf="generatorForm.get('num').hasError('required')">{{
+    <mat-error *ngIf="this.num.dirty">
+      <span *ngIf="this.num.hasError('required')">{{
         FormErrorMessage.Required
       }}</span>
-      <span
-        *ngIf="
-          generatorForm.get('num').hasError('min') ||
-          generatorForm.get('num').hasError('max')
-        "
-        >{{ FormErrorMessage.NumOfIntegers }}</span
-      >
+      <span *ngIf="this.num.hasError('min') || this.num.hasError('max')">{{
+        FormErrorMessage.NumOfIntegers
+      }}</span>
     </mat-error>
   </mat-form-field>
   <mat-form-field>
@@ -28,14 +24,14 @@
       formControlName="minValue"
       placeholder="Enter a number between -1000000 and 1000000"
     />
-    <mat-error *ngIf="generatorForm.get('minValue').dirty">
-      <span *ngIf="generatorForm.get('minValue').hasError('required')">{{
+    <mat-error *ngIf="this.minValue.dirty">
+      <span *ngIf="this.minValue.hasError('required')">{{
         FormErrorMessage.Required
       }}</span>
-      <span *ngIf="generatorForm.get('minValue').hasError('min')"
+      <span *ngIf="this.minValue.hasError('min')"
         >{{ FormErrorMessage.minValue }}.</span
       >
-      <span *ngIf="generatorForm.get('minValue').hasError('max')">
+      <span *ngIf="this.minValue.hasError('max')">
         {{ FormErrorMessage.maxValue }}</span
       >
     </mat-error>
@@ -48,21 +44,21 @@
       formControlName="maxValue"
       placeholder="Enter the maximum value"
     />
-    <mat-error *ngIf="generatorForm.get('maxValue').dirty">
-      <span *ngIf="generatorForm.get('maxValue').hasError('required')">{{
+    <mat-error *ngIf="this.maxValue.dirty">
+      <span *ngIf="this.maxValue.hasError('required')">{{
         FormErrorMessage.Required
       }}</span>
-      <span *ngIf="generatorForm.get('maxValue').hasError('min')"
+      <span *ngIf="this.maxValue.hasError('min')"
         >{{ FormErrorMessage.minValue }}.</span
       >
-      <span *ngIf="generatorForm.get('maxValue').hasError('max')">
+      <span *ngIf="this.maxValue.hasError('max')">
         {{ FormErrorMessage.maxValue }}</span
       >
       <span
         *ngIf="
-          generatorForm.get('maxValue').value &&
-          generatorForm.get('maxValue').hasError('maxNumLessThanMin') &&
-          generatorForm.get('minValue').dirty
+          this.maxValue.value &&
+          this.maxValue.hasError('maxNumLessThanMin') &&
+          this.minValue.dirty
         "
       >
         {{ FormErrorMessage.minMaxValue }}
