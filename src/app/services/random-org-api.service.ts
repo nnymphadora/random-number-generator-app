@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
+import { IntegerOccurrence } from '../../types';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +13,7 @@ export class RandomOrgApiService {
     n: number,
     min: number,
     max: number
-  ): Observable<{ number: number; occurencies: number }[]> {
+  ): Observable<IntegerOccurrence[]> {
     let params = new HttpParams();
     params = params.set('num', n);
     params = params.set('min', min);
@@ -26,19 +27,19 @@ export class RandomOrgApiService {
       .pipe(map((response) => this.processResponse(response)));
   }
 
-  private processResponse(
-    response: string
-  ): { number: number; occurencies: number }[] {
+  private processResponse(response: string): IntegerOccurrence[] {
     const integersArray = response.trim().split('\n').map(Number);
 
-    const result: { number: number; occurencies: number }[] = [];
+    const result: IntegerOccurrence[] = [];
 
-    integersArray.forEach((num) => {
-      const existingIndex = result.findIndex((item) => item.number === num);
+    integersArray.forEach((el: number) => {
+      const existingIndex = result.findIndex(
+        (integerOccurence: IntegerOccurrence) => integerOccurence.integer === el
+      );
       if (existingIndex !== -1) {
-        result[existingIndex].occurencies++;
+        result[existingIndex].occurrences++;
       } else {
-        result.push({ number: num, occurencies: 1 });
+        result.push({ integer: el, occurrences: 1 });
       }
     });
 

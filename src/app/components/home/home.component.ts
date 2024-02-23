@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RandomOrgApiService } from '../../services/random-org-api.service';
+import { IntegerOccurrence, RequestParams } from '../../../types';
 import { Point } from 'chart.js';
 import {
   animate,
@@ -10,9 +11,9 @@ import {
 } from '@angular/animations';
 
 @Component({
-  selector: 'app-main',
-  templateUrl: './main.component.html',
-  styleUrl: './main.component.scss',
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrl: './home.component.scss',
   animations: [
     trigger('slideAnimationLeft', [
       state(
@@ -31,27 +32,27 @@ import {
     ]),
   ],
 })
-export class MainComponent {
+export class HomeComponent {
   randomNumbersData: Point[];
   dataRecieved: boolean = false;
   animationStateLeft: string = '70Width';
 
-  onFormSubmitted(formData: any) {
+  onFormSubmitted(formData: RequestParams) {
     this.randomOrgApiService
       .getRandomOrgNumbersData(
         formData.num,
         formData.minValue,
         formData.maxValue
       )
-      .subscribe((data: any) => {
+      .subscribe((data: IntegerOccurrence[]) => {
         this.onDataRecieved(data);
       });
   }
 
-  onDataRecieved(data: { number: number; occurencies: number }[]) {
+  onDataRecieved(data: IntegerOccurrence[]) {
     this.randomNumbersData = data.map((item) => ({
-      x: item.number,
-      y: item.occurencies,
+      x: item.integer,
+      y: item.occurrences,
     }));
     this.dataRecieved = true;
     this.showAnimations();

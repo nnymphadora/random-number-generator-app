@@ -6,6 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { FormErrorMessage } from '../../enums/form-error-message';
+import { RequestParams } from '../../../types';
 
 @Component({
   selector: 'app-form',
@@ -14,7 +15,7 @@ import { FormErrorMessage } from '../../enums/form-error-message';
 })
 export class FormComponent implements OnInit {
   generatorForm: FormGroup;
-  @Output() formSubmitted = new EventEmitter<any>();
+  @Output() formSubmitted = new EventEmitter<RequestParams>();
 
   FormErrorMessage = FormErrorMessage;
 

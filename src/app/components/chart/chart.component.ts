@@ -21,7 +21,7 @@ export class ChartComponent implements OnChanges {
   public chartOptions: ChartConfiguration<'scatter'>['options'] = {
     responsive: true,
     plugins: {
-      legend: { onClick: null },
+      legend: { onClick: null, display: false },
     },
     scales: {
       y: {

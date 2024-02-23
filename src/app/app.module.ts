@@ -7,7 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './components/app/app.component';
-import { MainComponent } from './components/main/main.component';
+import { HomeComponent } from './components/home/home.component';
 import { NgChartsModule } from 'ng2-charts';
 import { FormComponent } from './components/form/form.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -17,7 +17,7 @@ import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
-  declarations: [AppComponent, MainComponent, FormComponent, ChartComponent],
+  declarations: [AppComponent, HomeComponent, FormComponent, ChartComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
