@@ -1,6 +1,6 @@
 # RandomNumGeneratorApp
 
-This Angular app allows you to generate random numbers using the random.org HTTP API. It's a simple application built with Angular Material and Chart.js.
+This Angular app allows you to generate random numbers using the random.org HTTP API. It's a simple application built with Angular Material and Chart.js. This project follows coding standards enforced by ESLint.
 
 # Installation
 
@@ -9,8 +9,8 @@ To install and run this project locally, follow these steps:
 -Clone this repository to your local machine.
 =Navigate to the project directory.
 =Run npm install to install the dependencies.
-Run npm start to start the development server.
-Open your browser and visit http://localhost:4200 to view the app.
+-Run npm start to start the development server.
+-Open your browser and visit http://localhost:4200 to view the app.
 
 # Usage
 
